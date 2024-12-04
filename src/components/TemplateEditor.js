@@ -11,13 +11,12 @@ function TemplateEditor() {
   const [template, setTemplate] = useState({
     name: '',
     content: '',
-    type: 'user-created',
     image_url: '', 
   });
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:8000/api/templates/${id}`)
+      axios.get(`https://layhelpbackend.onrender.com/api/templates/${id}`)
         .then(response => setTemplate(response.data))
         .catch(error => console.error('Error fetching template:', error));
     }
@@ -25,12 +24,12 @@ function TemplateEditor() {
 
   const handleSave = () => {
     if (id) {
-      axios.put(`http://localhost:8000/api/templates/${id}`, template)
+      axios.put(`https://layhelpbackend.onrender.com/api/templates/${id}`, template)
         .then(() => navigate('/')) 
         .catch(error => console.error('Error updating template:', error));
     } else {
     
-      axios.post('http://localhost:8000/api/templates', template)
+      axios.post('https://layhelpbackend.onrender.com/api/createTemplate', template)
         .then(() => navigate('/'))  
         .catch(error => console.error('Error saving template:', error));
     }
@@ -46,7 +45,7 @@ function TemplateEditor() {
 
   const handleDelete = () => {
     if (id) {
-      axios.delete(`http://localhost:8000/api/templates/${id}`)
+      axios.delete(`https://layhelpbackend.onrender.com/api/templates/${id}`)
         .then(() => navigate('/')) 
         .catch(error => {
           console.error('Error deleting template:', error);

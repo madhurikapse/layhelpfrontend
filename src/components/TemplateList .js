@@ -8,7 +8,7 @@ function TemplateList() {
   const [tab, setTab] = useState('library');
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/templates')
+    axios.get('https://layhelpbackend.onrender.com/api/templates')
       .then(response => {
         console.log(response.data); // Log to check the response data
         setTemplates(response.data);
